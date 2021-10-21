@@ -10,9 +10,16 @@ Fun fact: "chispa" means Spark in Spanish ;)
 
 ## Installation
 
-Install the latest version with `pip install chispa`.
+Make sure you have the correct venv already activated
 
-If you use Poetry, add this library as a development dependency with `poetry add chispa --dev`.
+```bash
+ git switch feature/color
+ pip install poetry
+ poetry install
+ poetry build
+ export ARTIFACT=$(poetry version | sed "s/ /-/g") && tar xvOf "dist/$ARTIFACT.tar.gz" "$ARTIFACT/setup.py" > setup.py
+ pip install -e .
+```
 
 ## Column equality
 
