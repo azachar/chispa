@@ -17,7 +17,6 @@ Make sure you have the correct venv already activated
  cd chispa
  git switch feature/color
  pip install poetry
- poetry install
 ```
 
 If you are using only pip, please follow with the setup. Due to some bug, you will need to remove poetry's myproject.toml file.
