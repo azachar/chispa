@@ -25,8 +25,11 @@ If you are using only pip, please follow with the setup. Due to some bug, you wi
  poetry build
  export ARTIFACT=$(poetry version | sed "s/ /-/g") && tar xvOf "dist/$ARTIFACT.tar.gz" "$ARTIFACT/setup.py" > setup.py
  rm myproject.toml
+ # please mind a dot here:
  pip install -e .
 ```
+
+> If you are having a weird issues with setuptools, please remove `myproject.toml` it will go away.
 
 ## Column equality
 
