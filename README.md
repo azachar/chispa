@@ -19,12 +19,12 @@ Make sure you have the correct venv already activated
  pip install poetry
 ```
 
-If you are using only pip, please follow with the setup. Due to some bug, you will need to remove poetry's myproject.toml file.
+If you are using only pip, please follow with the setup. Due to some bug, you will need to remove poetry's pyproject.toml file.
 
 ```
  poetry build
  export ARTIFACT=$(poetry version | sed "s/ /-/g") && tar xvOf "dist/$ARTIFACT.tar.gz" "$ARTIFACT/setup.py" > setup.py
- rm myproject.toml
+ rm pyproject.toml
  # please mind a dot here:
  pip install -e .
 ```
