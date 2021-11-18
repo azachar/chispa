@@ -19,7 +19,9 @@ class TableDiff:
             df1_as_text + "\n" +
             color("** Expected **", fg=16, bg="green") + "\n" +
             df2_as_text +
-            "\n** Diff **\n" + 
+            "\n** Diff (Rought)**\n" + 
+            diff_strings(df1_as_text, df2_as_text) +
+            "\n** Diff (Detailed)**\n" +
             self.diff_strings(df1_as_text, df2_as_text) +
             "\n** Comparison **\n" + t.get_string())
 
@@ -30,4 +32,16 @@ class TableDiff:
             return(df._jdf.showString(n, int(truncate), vertical))
 
     def diff_strings(self, a, b):
-        return diff_strings(a, b)
+        output = []
+        matcher = difflib.SequenceMatcher(None, a, b)
+        for opcode, a0, a1, b0, b1 in matcher.get_opcodes():
+            if opcode == "equal":
+                output.append(a[a0:a1])
+            elif opcode == "insert":
+                output.append(color(b[b0:b1], fg=16, bg="green"))
+            elif opcode == "delete":
+                output.append(color(a[a0:a1], fg=16, bg="red"))
+            elif opcode == "replace":
+                output.append(color(b[b0:b1], fg=16, bg="green"))
+                output.append(color(a[a0:a1], fg=16, bg="red"))
+        return "".join(output)
